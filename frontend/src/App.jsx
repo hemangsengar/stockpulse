@@ -16,7 +16,7 @@ import EngineFlow from './components/EngineFlow';
 import FeatureGrid from './components/FeatureGrid';
 import ProfessionalFooter from './components/ProfessionalFooter';
 
-const API_BASE = "http://127.0.0.1:8080";
+const API_BASE = import.meta.env.VITE_API_URL || "https://stockinsight-api-b3afbpcccch5dugm.centralindia-01.azurewebsites.net";
 
 function App() {
   const [query, setQuery] = useState("");
