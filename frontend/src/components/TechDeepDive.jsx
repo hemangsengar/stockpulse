@@ -11,9 +11,9 @@ const techStack = {
         desc: "Recurrent Neural Network optimized for time-series forecasting across 60-day historical technical windows.",
         code: `model = Sequential([\n    LSTM(50, return_sequences=True),\n    Dropout(0.2),\n    LSTM(50),\n    Dense(1, activation='linear')\n])`
     },
-    "Claude 3": {
+    "Gemini": {
         desc: "LLM Orchestration for qualitative news synthesis and high-precision ticker resolution.",
-        code: `async def synthesize(news):\n    response = await claude.messages.create(\n        model="claude-3-opus",\n        prompt=f"Quantify impact of: {news}"\n    )`
+        code: `async def synthesize(news):\n    response = await gemini.models.generate_content(\n        model="gemini-1.5-flash",\n        contents=f"Quantify impact of: {news}"\n    )`
     }
 };
 
@@ -37,7 +37,7 @@ const TechDeepDive = () => {
                     >
                         {key === 'FastAPI' && <Zap size={16} />}
                         {key === 'LSTM' && <Layers size={16} />}
-                        {key === 'Claude 3' && <BrainCircuit size={16} />}
+                        {key === 'Gemini' && <BrainCircuit size={16} />}
                         {key}
                     </div>
                 ))}

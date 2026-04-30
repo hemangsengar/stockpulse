@@ -9,7 +9,7 @@ from services.ai_service import (
     get_nse_ticker_from_name, 
     get_sector_peers, 
     fetch_peer_data, 
-    get_claude_comprehensive_analysis
+    get_gemini_comprehensive_analysis
 )
 from utils.ticker_utils import search_ticker_fallback
 
@@ -72,7 +72,7 @@ async def perform_full_analysis(company_name: str):
         sector_pe_avg = sum(pe_list) / len(pe_list) if pe_list else None
 
         # Step 4: AI Sentiment Analysis
-        ai_data = await get_claude_comprehensive_analysis(ticker, latest_row, indicators, fundamentals, news, lstm_trend)
+        ai_data = await get_gemini_comprehensive_analysis(ticker, latest_row, indicators, fundamentals, news, lstm_trend)
         
         # Step 5: Alpha Scoring
         alpha_score = calculate_alpha_score(lstm_trend, ai_data['sentiment_score'])

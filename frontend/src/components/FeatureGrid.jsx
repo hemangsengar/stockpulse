@@ -12,7 +12,7 @@ const FeatureGrid = () => {
         {
             icon: CloudLightning,
             title: "LLM Sentiment",
-            desc: "Instant linguistic analysis of complex financial news through Claude 3 Opus integration."
+            desc: "Instant linguistic analysis of complex financial news through Gemini integration."
         },
         {
             icon: Activity,

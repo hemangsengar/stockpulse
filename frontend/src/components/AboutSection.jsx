@@ -41,7 +41,7 @@ const AboutSection = () => (
                     </li>
                     <li style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                         <span style={{ color: 'var(--accent-emerald)' }}>✓</span>
-                        <span><strong style={{ color: 'white' }}>LLM Integration (Claude 3)</strong> for news sentiment analysis</span>
+                        <span><strong style={{ color: 'white' }}>LLM Integration (Gemini)</strong> for news sentiment analysis</span>
                     </li>
                     <li style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                         <span style={{ color: 'var(--accent-emerald)' }}>✓</span>
@@ -65,7 +65,7 @@ const AboutSection = () => (
                         <Code2 size={20} color="var(--accent-blue)" /> Technical Stack
                     </h3>
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
-                        {['Python', 'FastAPI', 'TensorFlow', 'React 18', 'Vite', 'Claude 3 API', 'SQLite', 'Pandas'].map((tech) => (
+                        {['Python', 'FastAPI', 'TensorFlow', 'React 18', 'Vite', 'Gemini API', 'SQLite', 'Pandas'].map((tech) => (
                             <span key={tech} style={{
                                 padding: '0.5rem 1rem',
                                 background: 'rgba(56, 189, 248, 0.1)',

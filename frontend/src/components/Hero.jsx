@@ -19,7 +19,7 @@ const Hero = ({ onLaunch }) => (
       </h1>
       <p className="hero-sub">
         Retail investors lose because they react to headlines. StockPulse AI wins by quantifying them. 
-        We fuse deep temporal LSTM forecasting with real-time Claude 3 news synthesis to generate 
+        We fuse deep temporal LSTM forecasting with real-time Gemini news synthesis to generate 
         one unified <strong style={{ color: 'var(--accent-cyan)' }}>Alpha Score</strong>.
       </p>
       <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', flexWrap: 'wrap' }}>

@@ -1,14 +1,32 @@
+import asyncio
+import json
 import os
+import re
 import yfinance as yf
-from anthropic import AsyncAnthropic
 from dotenv import load_dotenv
+from google import genai
 from typing import List
 from data_models.schemas import PeerInfo
 from utils.ticker_utils import ticker_exists
 
 load_dotenv()
-client = AsyncAnthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
-CLAUDE_MODEL = "claude-3-opus-20240229"
+client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
+GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-1.5-flash")
+
+async def _gemini_text(prompt: str) -> str:
+    def _call():
+        response = client.models.generate_content(
+            model=GEMINI_MODEL,
+            contents=prompt,
+        )
+        return (response.text or "").strip()
+
+    return await asyncio.to_thread(_call)
+
+def _extract_json_block(content: str):
+    if "{" in content and "}" in content:
+        content = content[content.find("{"):content.rfind("}") + 1]
+    return json.loads(content)
 
 async def get_nse_ticker_from_name(company_name):
     print(f"🔍 Looking up ticker for: {company_name}")
@@ -17,12 +35,9 @@ async def get_nse_ticker_from_name(company_name):
         Return ONLY the ticker symbol followed by '.NS' (e.g., RELIANCE.NS, TCS.NS). 
         If it's not a prominent NSE stock or unknown, return 'NOT_FOUND'."""
         
-        message = await client.messages.create(
-            model=CLAUDE_MODEL,
-            max_tokens=10,
-            messages=[{"role": "user", "content": prompt}]
-        )
-        ticker = message.content[0].text.strip()
+        response_text = await _gemini_text(prompt)
+        ticker_matches = re.findall(r"[A-Z0-9&-]+\.NS", response_text.upper())
+        ticker = ticker_matches[0] if ticker_matches else response_text.strip().upper()
         
         if ticker != "NOT_FOUND" and ticker.endswith(".NS"):
             if ticker_exists(ticker):
@@ -40,22 +55,17 @@ async def get_sector_peers(ticker: str) -> List[str]:
     """Identifies top 3 NSE competitors using AI."""
     try:
         system_prompt = f"Identify the top 3 direct NSE-listed competitors for the stock {ticker}. Return ONLY the ticker symbols separated by commas (e.g., TCS.NS,INFY.NS,HCLTECH.NS). All tickers MUST end in .NS."
-        message = await client.messages.create(
-            model=CLAUDE_MODEL,
-            max_tokens=50,
-            messages=[{"role": "user", "content": system_prompt}]
-        )
-        tickers = message.content[0].text.strip().split(',')
-        peer_list = [t.strip() for t in tickers if t.strip().endswith(".NS")]
+        response_text = await _gemini_text(system_prompt)
+        peer_list = list(dict.fromkeys(re.findall(r"[A-Z0-9&-]+\.NS", response_text.upper())))
         print(f"👥 Identified peers: {peer_list}")
         return peer_list
     except Exception as e:
         print(f"Peer identification error: {e}")
         return []
 
-async def get_claude_comprehensive_analysis(ticker, latest_row, indicators, fundamentals, news, lstm_trend):
+async def get_gemini_comprehensive_analysis(ticker, latest_row, indicators, fundamentals, news, lstm_trend):
     """
-    Asks Claude to analyze the stock based on combined technical and news data.
+    Asks Gemini to analyze the stock based on combined technical and news data.
     """
     news_titles = [item.title for item in news]
     
@@ -77,19 +87,10 @@ async def get_claude_comprehensive_analysis(ticker, latest_row, indicators, fund
     """
     
     try:
-        message = await client.messages.create(
-            model=CLAUDE_MODEL,
-            max_tokens=500,
-            messages=[{"role": "user", "content": prompt}]
-        )
-        import json
-        content = message.content[0].text
-        # Extract JSON if Claude adds any conversational text
-        if "{" in content:
-            content = content[content.find("{"):content.rfind("}")+1]
-        return json.loads(content)
+        content = await _gemini_text(prompt)
+        return _extract_json_block(content)
     except Exception as e:
-        print(f"Claude analysis error: {e}")
+        print(f"Gemini analysis error: {e}")
         return {
             "summary": "Technical analysis complete. Neural trend is " + lstm_trend,
             "sentiment_score": 0.0,

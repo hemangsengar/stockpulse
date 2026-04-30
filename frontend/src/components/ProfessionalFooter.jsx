@@ -27,7 +27,7 @@ const ProfessionalFooter = () => (
                         <div className="footer-logo">StockPulse AI</div>
                     </div>
                     <p style={{ color: 'var(--text-secondary)', maxWidth: '400px', lineHeight: 1.7, marginBottom: '2rem' }}>
-                        A technical demonstration of combining Deep Learning (LSTM) with Large Language Models (Claude 3)
+                        A technical demonstration of combining Deep Learning (LSTM) with Large Language Models (Gemini)
                         for intelligent stock market analysis. Built as a portfolio project to showcase full-stack AI engineering skills.
                     </p>
                     <div style={{ display: 'flex', gap: '1rem' }}>
@@ -122,7 +122,7 @@ const ProfessionalFooter = () => (
                         Built With
                     </h4>
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-                        {['Python', 'FastAPI', 'TensorFlow', 'React', 'Claude 3 API', 'SQLite', 'Framer Motion'].map((tech) => (
+                        {['Python', 'FastAPI', 'TensorFlow', 'React', 'Gemini API', 'SQLite', 'Framer Motion'].map((tech) => (
                             <span key={tech} style={{
                                 padding: '0.4rem 0.8rem',
                                 background: 'rgba(255,255,255,0.03)',

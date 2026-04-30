@@ -63,7 +63,7 @@ const TerminalSection = ({ query, setQuery, onSearch, loading }) => {
                     </button>
                 </form>
                 <p style={{ marginTop: '1.5rem', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
-                    Powered by Claude 3 Opus & LSTM Hidden Layers
+                    Powered by Gemini & LSTM Hidden Layers
                 </p>
             </motion.div>
         </section>

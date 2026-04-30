@@ -6,7 +6,7 @@ const EngineFlow = () => {
     const steps = [
         { icon: Database, name: "Market Data", desc: "Real-time Yahoo Finance OHLCV ingest" },
         { icon: Zap, name: "LSTM Layer", desc: "60-day temporal feature extraction" },
-        { icon: BrainCircuit, name: "Claude 3", desc: "Linguistic sentiment quantification" },
+        { icon: BrainCircuit, name: "Gemini", desc: "Linguistic sentiment quantification" },
         { icon: Target, name: "Alpha Score", desc: "Unified quantitative recommendation" }
     ];
 
