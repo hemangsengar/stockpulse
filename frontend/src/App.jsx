@@ -16,7 +16,10 @@ import EngineFlow from './components/EngineFlow';
 import FeatureGrid from './components/FeatureGrid';
 import ProfessionalFooter from './components/ProfessionalFooter';
 
-const API_BASE = import.meta.env.VITE_API_URL || "/api";
+const rawApiUrl = import.meta.env.VITE_API_URL || "/api";
+const API_BASE = rawApiUrl.startsWith('http') 
+  ? rawApiUrl 
+  : `https://${rawApiUrl}`;
 
 function App() {
   const [query, setQuery] = useState("");
@@ -40,7 +43,8 @@ function App() {
         setTimeout(() => resultsRef.current?.scrollIntoView({ behavior: 'smooth' }), 200);
       }
     } catch (err) {
-      setError("Engine Offline. Check the Vercel backend deployment and API route.");
+      console.error(err);
+      setError(`Engine Offline. ${err.message}. Check your API URL: ${API_BASE}`);
     } finally {
       setLoading(false);
     }
