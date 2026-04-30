@@ -60,17 +60,25 @@ const Navbar = () => {
                             target={link.external ? '_blank' : undefined}
                             rel={link.external ? 'noopener noreferrer' : undefined}
                             style={{
-                                color: 'var(--text-secondary)',
+                                color: 'var(--text-primary)',
                                 textDecoration: 'none',
-                                fontSize: '0.9rem',
-                                fontWeight: 500,
+                                fontSize: '0.95rem',
+                                fontWeight: 600,
                                 display: 'flex',
                                 alignItems: 'center',
                                 gap: '6px',
-                                transition: 'color 0.2s'
+                                transition: 'all 0.2s',
+                                padding: '0.5rem 0.75rem',
+                                borderRadius: '6px'
                             }}
-                            onMouseOver={(e) => e.target.style.color = 'white'}
-                            onMouseOut={(e) => e.target.style.color = 'var(--text-secondary)'}
+                            onMouseOver={(e) => {
+                                e.target.style.color = 'var(--accent-blue)';
+                                e.target.style.backgroundColor = 'rgba(37, 99, 235, 0.08)';
+                            }}
+                            onMouseOut={(e) => {
+                                e.target.style.color = 'var(--text-primary)';
+                                e.target.style.backgroundColor = 'transparent';
+                            }}
                         >
                             {link.icon && <link.icon size={16} />}
                             {link.label}

@@ -146,10 +146,11 @@ code {
 
 .hero-sub {
   font-size: 1.25rem;
-  color: var(--text-secondary);
+  color: var(--text-primary);
   max-width: 800px;
   margin: 0 auto 3.5rem;
   line-height: 1.6;
+  font-weight: 500;
 }
 
 .hero-v3::after {
@@ -273,17 +274,21 @@ code {
 
 .feature-card .icon {
   margin-bottom: 1.5rem;
-  color: var(--accent-cyan);
+  color: var(--accent-blue);
+  font-size: 2.5rem;
 }
 
 .feature-card h3 {
   margin-bottom: 1rem;
   font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
 }
 
 .feature-card p {
   color: var(--text-secondary);
   font-size: 0.95rem;
+  line-height: 1.6;
 }
 
 /* Enhanced Footer */
@@ -303,7 +308,7 @@ code {
 .footer-logo {
   font-size: 1.5rem;
   font-weight: 800;
-  color: white;
+  color: var(--text-primary);
   margin-bottom: 1.5rem;
 }
 
@@ -313,6 +318,7 @@ code {
   text-transform: uppercase;
   letter-spacing: 1px;
   color: var(--accent-blue);
+  font-weight: 700;
 }
 
 .footer-links ul {
@@ -323,6 +329,8 @@ code {
   margin-bottom: 0.75rem;
   color: var(--text-secondary);
   cursor: pointer;
+  transition: color var(--transition-fast);
+  font-weight: 500;
 }
 
 .footer-links li:hover {
@@ -331,12 +339,19 @@ code {
 
 /* Comparison Table */
 .comparison-section {
-  background: var(--bg-card);
+  background: rgba(249, 250, 251, 0.6);
   border: 1px solid var(--glass-border);
   border-radius: 32px;
   padding: 4rem;
   margin: 4rem 0;
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(12px);
+  transition: all var(--transition-base);
+}
+
+.comparison-section:hover {
+  border-color: var(--accent-blue);
+  background: rgba(249, 250, 251, 0.8);
+  box-shadow: 0 0 30px rgba(37, 99, 235, 0.08);
 }
 
 .comparison-grid {
@@ -639,7 +654,7 @@ code {
 .alpha-main-val h2 {
   font-size: 4rem;
   font-weight: 800;
-  background: linear-gradient(to bottom, #fff, var(--accent-blue));
+  background: linear-gradient(to bottom, var(--text-primary), var(--accent-blue));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -676,7 +691,7 @@ code {
 .price-v3 {
   font-size: 3.5rem;
   font-weight: 800;
-  color: white;
+  color: var(--text-primary);
 }
 
 .ticker-title {
@@ -799,7 +814,7 @@ section,
 .insight-card {
   font-size: 1.1rem;
   line-height: 1.8;
-  color: #f1f5f9;
+  color: var(--text-primary);
 }
 
 /* Peer Row */
@@ -951,35 +966,43 @@ section,
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 6rem 2rem;
+  padding: 8rem 2rem 6rem;
   text-align: center;
   gap: 2rem;
+  min-height: 60vh;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.02), rgba(6, 182, 212, 0.01));
+  border-radius: var(--radius-2xl);
+  margin: var(--space-3xl) 0;
 }
 
 .loading-spinner {
   position: relative;
   width: 60px;
   height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .loading-spinner svg {
   animation: spinSmooth 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  stroke: var(--accent-blue);
-  stroke-width: 2;
-  fill: none;
+  color: var(--accent-blue);
+  filter: drop-shadow(0 0 8px rgba(37, 99, 235, 0.3));
 }
 
 .loading-text {
-  font-size: 1.25rem;
-  font-weight: 600;
+  font-size: 1.5rem;
+  font-weight: 700;
   color: var(--text-primary);
   letter-spacing: -0.01em;
+  margin: 0;
 }
 
 .loading-subtext {
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: var(--text-secondary);
   max-width: 400px;
+  margin: 0;
 }
 
 /* Button disabled state */

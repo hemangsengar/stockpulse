@@ -95,7 +95,7 @@ function App() {
               >
                 <div className="loading-spinner">
                   <svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="30" cy="30" r="25" fill="none" strokeLinecap="round" />
+                    <circle cx="30" cy="30" r="25" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                   </svg>
                 </div>
                 <h3 className="loading-text">Analyzing Stock Intelligence</h3>
