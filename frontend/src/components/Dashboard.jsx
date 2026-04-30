@@ -24,7 +24,7 @@ const Dashboard = ({ data }) => {
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
                     <div>
                         <div className="ticker-title">{data.ticker} / NSE</div>
-                        <h1 style={{ fontSize: '3rem', fontWeight: 800, margin: '0.5rem 0' }}>{data.company_name}</h1>
+                        <h1 style={{ fontSize: '3rem', fontWeight: 800, margin: '0.5rem 0', color: 'var(--text-primary)' }}>{data.company_name}</h1>
                     </div>
                     <div style={{ textAlign: 'right' }}>
                         <div className="price-v3">₹{data.latest_price.toLocaleString()}</div>
@@ -41,7 +41,7 @@ const Dashboard = ({ data }) => {
                 <div className="stat-label" style={{ marginBottom: '2rem' }}>Neural Alpha Score</div>
                 <div className="alpha-gauge-v3">
                     <svg viewBox="0 0 100 100" style={{ transform: 'rotate(-90deg)', filter: 'drop-shadow(0 0 8px var(--accent-blue))' }}>
-                        <circle cx="50" cy="50" r="45" fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="6" />
+                        <circle cx="50" cy="50" r="45" fill="none" stroke="rgba(0,0,0,0.08)" strokeWidth="6" />
                         <motion.circle
                             cx="50" cy="50" r="45"
                             fill="none"
@@ -97,7 +97,7 @@ const Dashboard = ({ data }) => {
             {/* 🧠 Executive AI Logic */}
             <div className="result-panel" style={{ gridColumn: 'span 12' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '2rem' }}>
-                    <div style={{ padding: '8px', background: 'rgba(56, 189, 248, 0.1)', borderRadius: '12px', color: 'var(--accent-blue)' }}>
+                    <div style={{ padding: '8px', background: 'rgba(37, 99, 235, 0.1)', borderRadius: '12px', color: 'var(--accent-blue)' }}>
                         <Database size={20} />
                     </div>
                     <div className="stat-label" style={{ margin: 0 }}>Executive Intelligence Synthesis</div>
@@ -120,13 +120,13 @@ const Dashboard = ({ data }) => {
                             transition={{ delay: idx * 0.1 }}
                             className="headline-card"
                         >
-                            <a href={item.link} target="_blank" rel="noopener noreferrer" style={{ color: 'white', textDecoration: 'none', fontWeight: 600, display: 'block', marginBottom: '8px', fontSize: '1.05rem' }}>
+                            <a href={item.link} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-primary)', textDecoration: 'none', fontWeight: 600, display: 'block', marginBottom: '8px', fontSize: '1.05rem' }}>
                                 {item.title}
                             </a>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                                 <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>Yahoo Finance • Real-time</span>
                                 {item.sentiment_impact && (
-                                    <span style={{ fontSize: '0.8rem', padding: '4px 10px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', color: 'var(--accent-blue)' }}>
+                                    <span style={{ fontSize: '0.8rem', padding: '4px 10px', background: 'rgba(37, 99, 235, 0.1)', borderRadius: '6px', color: 'var(--accent-blue)' }}>
                                         Impact: {item.sentiment_impact}
                                     </span>
                                 )}
@@ -144,9 +144,9 @@ const Dashboard = ({ data }) => {
                 <div className="peer-list">
                     {data.peers.map((peer, idx) => (
                         <div key={idx} className="peer-row">
-                            <span style={{ fontWeight: 700, fontSize: '1.1rem' }}>{peer.ticker}</span>
+                            <span style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--text-primary)' }}>{peer.ticker}</span>
                             <div style={{ textAlign: 'right' }}>
-                                <div style={{ fontSize: '0.8rem', opacity: 0.5 }}>Daily Change</div>
+                                <div style={{ fontSize: '0.8rem', opacity: 0.7, color: 'var(--text-secondary)' }}>Daily Change</div>
                                 <span className={peer.change_pct >= 0 ? "up" : "down"} style={{ fontWeight: 800 }}>
                                     {peer.change_pct >= 0 ? "+" : ""}{peer.change_pct.toFixed(2)}%
                                 </span>
@@ -154,7 +154,7 @@ const Dashboard = ({ data }) => {
                         </div>
                     ))}
                 </div>
-                <div style={{ marginTop: '2.5rem', background: 'rgba(56, 189, 248, 0.05)', padding: '1rem', borderRadius: '12px', fontSize: '0.8rem', color: 'var(--text-secondary)', textAlign: 'center' }}>
+                <div style={{ marginTop: '2.5rem', background: 'rgba(37, 99, 235, 0.05)', padding: '1rem', borderRadius: '12px', fontSize: '0.8rem', color: 'var(--text-secondary)', textAlign: 'center', border: '1px solid var(--glass-border)' }}>
                     Relative Strength Index shows current position against {data.peers.length} major industry rivals.
                 </div>
             </div>
