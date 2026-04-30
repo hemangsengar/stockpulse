@@ -5,12 +5,12 @@ from pydantic import BaseModel
 import sys
 import os
 
-# Add the parent directory to the path to import backend modules
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+# Add the backend directory to the path so absolute imports within backend work
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'backend'))
 
-from backend.core.engine import perform_full_analysis
-from backend.services.ai_service import get_nse_ticker_from_name
-from backend.cache_manager import cache
+from core.engine import perform_full_analysis
+from services.ai_service import get_nse_ticker_from_name
+from cache_manager import cache
 
 app = FastAPI(title="StockPulse Advanced API")
 
