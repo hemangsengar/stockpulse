@@ -10,5 +10,4 @@ frontend_legacy
 report.docx
 ml.ipynb
 *.md
-frontend
 backend/Models/*.h5
