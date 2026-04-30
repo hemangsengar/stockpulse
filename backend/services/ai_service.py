@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 from google import genai
 from typing import List
 from data_models.schemas import PeerInfo
-from utils.ticker_utils import ticker_exists
+from utils.ticker_utils import ticker_exists, search_ticker_fallback
 
 load_dotenv()
 client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
@@ -46,9 +46,18 @@ async def get_nse_ticker_from_name(company_name):
             else:
                 print(f"⚠️ AI returned {ticker} but it doesn't exist on Yahoo Finance.")
         
+        fallback_ticker = search_ticker_fallback(company_name)
+        if fallback_ticker:
+            return fallback_ticker
+            
         return "NOT_FOUND"
     except Exception as e:
         print(f"Ticker lookup error: {e}")
+        
+        fallback_ticker = search_ticker_fallback(company_name)
+        if fallback_ticker:
+            return fallback_ticker
+            
         return "NOT_FOUND"
 
 async def get_sector_peers(ticker: str) -> List[str]:
