@@ -26,7 +26,7 @@ const Navbar = () => {
             right: 0,
             zIndex: 1000,
             padding: scrolled ? '1rem 2rem' : '1.5rem 2rem',
-            background: scrolled ? 'rgba(2, 6, 23, 0.95)' : 'transparent',
+            background: scrolled ? 'rgba(255, 255, 255, 0.95)' : 'transparent',
             backdropFilter: scrolled ? 'blur(20px)' : 'none',
             borderBottom: scrolled ? '1px solid var(--glass-border)' : 'none',
             transition: 'all 0.3s ease'
@@ -43,10 +43,10 @@ const Navbar = () => {
                         alignItems: 'center',
                         justifyContent: 'center'
                     }}>
-                        <Zap size={20} color="#020617" />
+                        <Zap size={20} color="white" />
                     </div>
                     <div>
-                        <div style={{ fontWeight: 800, fontSize: '1.25rem', letterSpacing: '-0.02em' }}>StockPulse AI</div>
+                        <div style={{ fontWeight: 800, fontSize: '1.25rem', letterSpacing: '-0.02em', color: 'var(--text-primary)' }}>StockPulse AI</div>
                         <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', letterSpacing: '1px' }}>LSTM + LLM RESEARCH</div>
                     </div>
                 </div>
@@ -81,7 +81,7 @@ const Navbar = () => {
                         href="#terminal"
                         style={{
                             background: 'var(--accent-blue)',
-                            color: '#020617',
+                            color: 'white',
                             padding: '0.6rem 1.5rem',
                             borderRadius: '10px',
                             fontWeight: 700,
@@ -89,7 +89,17 @@ const Navbar = () => {
                             textDecoration: 'none',
                             display: 'flex',
                             alignItems: 'center',
-                            gap: '8px'
+                            gap: '8px',
+                            transition: 'all 0.2s',
+                            boxShadow: '0 4px 12px rgba(37, 99, 235, 0.2)'
+                        }}
+                        onMouseOver={(e) => {
+                            e.target.style.transform = 'translateY(-2px)';
+                            e.target.style.boxShadow = '0 8px 20px rgba(37, 99, 235, 0.3)';
+                        }}
+                        onMouseOut={(e) => {
+                            e.target.style.transform = 'translateY(0)';
+                            e.target.style.boxShadow = '0 4px 12px rgba(37, 99, 235, 0.2)';
                         }}
                     >
                         Launch Terminal
@@ -124,7 +134,7 @@ const Navbar = () => {
                             top: '100%',
                             left: 0,
                             right: 0,
-                            background: 'rgba(2, 6, 23, 0.98)',
+                            background: 'rgba(255, 255, 255, 0.98)',
                             padding: '2rem',
                             borderBottom: '1px solid var(--glass-border)'
                         }}
@@ -137,11 +147,14 @@ const Navbar = () => {
                                 onClick={() => setMobileOpen(false)}
                                 style={{
                                     display: 'block',
-                                    color: 'var(--text-secondary)',
+                                    color: 'var(--text-primary)',
                                     textDecoration: 'none',
                                     padding: '1rem 0',
-                                    borderBottom: '1px solid var(--glass-border)'
+                                    borderBottom: '1px solid var(--glass-border)',
+                                    transition: 'color 0.2s'
                                 }}
+                                onMouseOver={(e) => e.target.style.color = 'var(--accent-blue)'}
+                                onMouseOut={(e) => e.target.style.color = 'var(--text-primary)'}
                             >
                                 {link.label}
                             </a>

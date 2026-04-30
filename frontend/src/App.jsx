@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
-import { Activity } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // Components
@@ -89,15 +88,35 @@ function App() {
         <div ref={resultsRef}>
           <AnimatePresence>
             {loading && (
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} style={{ textAlign: 'center', padding: '6rem 0' }}>
-                <Activity className="spinner" size={48} style={{ color: 'var(--accent-blue)', marginBottom: '2rem' }} />
-                <h3 style={{ fontSize: '1.5rem', fontWeight: 600 }}>Synthesizing Quantitative & Qualitative Intelligence...</h3>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="loading-container"
+              >
+                <div className="loading-spinner">
+                  <svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="30" cy="30" r="25" fill="none" strokeLinecap="round" />
+                  </svg>
+                </div>
+                <h3 className="loading-text">Analyzing Stock Intelligence</h3>
+                <p className="loading-subtext">Processing quantitative & qualitative data...</p>
               </motion.div>
             )}
 
             {error && !loading && (
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} style={{ textAlign: 'center', padding: '4rem', color: 'var(--accent-rose)' }}>
-                <h3>{error}</h3>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                style={{
+                  textAlign: 'center',
+                  padding: '4rem 2rem',
+                  color: 'var(--accent-rose)',
+                }}
+              >
+                <h3 style={{ marginBottom: '1rem' }}>{error}</h3>
+                <p style={{ fontSize: '0.95rem', color: 'var(--text-secondary)' }}>
+                  Please check your API configuration and try again.
+                </p>
               </motion.div>
             )}
 

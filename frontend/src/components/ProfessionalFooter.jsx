@@ -22,7 +22,7 @@ const ProfessionalFooter = () => (
                             alignItems: 'center',
                             justifyContent: 'center'
                         }}>
-                            <Zap size={20} color="#020617" />
+                            <Zap size={20} color="white" />
                         </div>
                         <div className="footer-logo">StockPulse AI</div>
                     </div>
@@ -38,7 +38,7 @@ const ProfessionalFooter = () => (
                             style={{
                                 width: '44px',
                                 height: '44px',
-                                background: 'rgba(255,255,255,0.05)',
+                                background: 'rgba(0,0,0,0.05)',
                                 borderRadius: '12px',
                                 display: 'flex',
                                 alignItems: 'center',
@@ -48,10 +48,10 @@ const ProfessionalFooter = () => (
                             }}
                             onMouseOver={(e) => {
                                 e.currentTarget.style.background = 'var(--accent-blue)';
-                                e.currentTarget.style.color = '#020617';
+                                e.currentTarget.style.color = 'white';
                             }}
                             onMouseOut={(e) => {
-                                e.currentTarget.style.background = 'rgba(255,255,255,0.05)';
+                                e.currentTarget.style.background = 'rgba(0,0,0,0.05)';
                                 e.currentTarget.style.color = 'var(--text-secondary)';
                             }}
                         >
@@ -64,7 +64,7 @@ const ProfessionalFooter = () => (
                             style={{
                                 width: '44px',
                                 height: '44px',
-                                background: 'rgba(255,255,255,0.05)',
+                                background: 'rgba(0,0,0,0.05)',
                                 borderRadius: '12px',
                                 display: 'flex',
                                 alignItems: 'center',
@@ -74,10 +74,10 @@ const ProfessionalFooter = () => (
                             }}
                             onMouseOver={(e) => {
                                 e.currentTarget.style.background = 'var(--accent-blue)';
-                                e.currentTarget.style.color = '#020617';
+                                e.currentTarget.style.color = 'white';
                             }}
                             onMouseOut={(e) => {
-                                e.currentTarget.style.background = 'rgba(255,255,255,0.05)';
+                                e.currentTarget.style.background = 'rgba(0,0,0,0.05)';
                                 e.currentTarget.style.color = 'var(--text-secondary)';
                             }}
                         >
@@ -88,7 +88,7 @@ const ProfessionalFooter = () => (
                             style={{
                                 width: '44px',
                                 height: '44px',
-                                background: 'rgba(255,255,255,0.05)',
+                                background: 'rgba(0,0,0,0.05)',
                                 borderRadius: '12px',
                                 display: 'flex',
                                 alignItems: 'center',
@@ -98,10 +98,10 @@ const ProfessionalFooter = () => (
                             }}
                             onMouseOver={(e) => {
                                 e.currentTarget.style.background = 'var(--accent-blue)';
-                                e.currentTarget.style.color = '#020617';
+                                e.currentTarget.style.color = 'white';
                             }}
                             onMouseOut={(e) => {
-                                e.currentTarget.style.background = 'rgba(255,255,255,0.05)';
+                                e.currentTarget.style.background = 'rgba(0,0,0,0.05)';
                                 e.currentTarget.style.color = 'var(--text-secondary)';
                             }}
                         >
