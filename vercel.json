@@ -1,6 +1,3 @@
 {
-  "buildCommand": "pip install -r api/requirements.txt",
-  "functions": {
-    "api/**/*.py": {}
-  }
+  "buildCommand": "pip install -r api/requirements.txt"
 }
