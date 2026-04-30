@@ -1,7 +1,6 @@
 import os
 import pathlib
 import numpy as np
-from tensorflow.keras.models import load_model
 from sklearn.preprocessing import MinMaxScaler
 
 def get_technical_trend_fallback(row):
@@ -53,6 +52,12 @@ def predict_trend_lstm(df, ticker):
     X_input = np.expand_dims(scaled, axis=0)
 
     try:
+        try:
+            from tensorflow.keras.models import load_model
+        except Exception as import_error:
+            print(f"ℹ️ TensorFlow unavailable for {ticker}: {import_error}. Using heuristic fallback.")
+            return get_technical_trend_fallback(df.iloc[-1])
+
         model = load_model(model_path)
         prediction = model.predict(X_input)
         label_map = {0: "Bullish", 1: "Bearish", 2: "Sideways"}

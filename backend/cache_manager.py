@@ -1,10 +1,14 @@
-import sqlite3
 import json
-import time
+import os
+import sqlite3
+import tempfile
 from datetime import datetime, timedelta
 
 class AnalysisCache:
-    def __init__(self, db_path="analysis_cache.db"):
+    def __init__(self, db_path=None):
+        if db_path is None:
+            cache_dir = tempfile.gettempdir() if os.getenv("VERCEL") else "."
+            db_path = os.path.join(cache_dir, "analysis_cache.db")
         self.db_path = db_path
         self._init_db()
 
@@ -39,10 +43,14 @@ class AnalysisCache:
         return None
 
     def set(self, ticker, data):
-        with sqlite3.connect(self.db_path) as conn:
-            conn.execute(
-                "INSERT OR REPLACE INTO cache (ticker, data, timestamp) VALUES (?, ?, ?)",
-                (ticker, json.dumps(data), datetime.now().isoformat())
-            )
+        try:
+            with sqlite3.connect(self.db_path) as conn:
+                conn.execute(
+                    "INSERT OR REPLACE INTO cache (ticker, data, timestamp) VALUES (?, ?, ?)",
+                    (ticker, json.dumps(data), datetime.now().isoformat())
+                )
+                conn.commit()
+        except Exception as e:
+            print(f"❌ Cache Set Error: {e}")
 
 cache = AnalysisCache()

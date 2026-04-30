@@ -16,7 +16,7 @@ import EngineFlow from './components/EngineFlow';
 import FeatureGrid from './components/FeatureGrid';
 import ProfessionalFooter from './components/ProfessionalFooter';
 
-const API_BASE = import.meta.env.VITE_API_URL || "https://stockinsight-api-b3afbpcccch5dugm.centralindia-01.azurewebsites.net";
+const API_BASE = import.meta.env.VITE_API_URL || "/api";
 
 function App() {
   const [query, setQuery] = useState("");
@@ -40,7 +40,7 @@ function App() {
         setTimeout(() => resultsRef.current?.scrollIntoView({ behavior: 'smooth' }), 200);
       }
     } catch (err) {
-      setError("Engine Offline. Ensure the backend is running on port 8080.");
+      setError("Engine Offline. Check the Vercel backend deployment and API route.");
     } finally {
       setLoading(false);
     }

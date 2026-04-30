@@ -1,0 +1,12 @@
+.git
+.env
+analysis_cache.db
+__pycache__
+*.pyc
+.venv
+node_modules
+.vscode
+frontend_legacy
+report.docx
+ml.ipynb
+*.md
